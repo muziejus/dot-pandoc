@@ -1,0 +1,94 @@
+% A template for doing problem sets in Markdown/LaTeX
+%
+% By Moacir P. de Sá Pereira (moacir.com), with guidance from
+% from https://github.com/kjhealy/pandoc-templates/blob/master/templates/xelatex.template
+\documentclass[letter,12pt,article,oneside]{memoir}
+
+\usepackage{mathspec}
+\setmainfont{EB Garamond}[
+    % Ligatures=Historic ,
+    % Ligatures=Rare ,
+    Mapping=tex-text ,
+    % ItalicFeatures={Style=Swash}
+  ]
+\setmathrm{EB Garamond}
+\setmathfont(Digits,Latin){EB Garamond}
+\usepackage[
+  breaklinks=true,
+  hidelinks,
+  unicode=true,
+	plainpages=false,
+	pdfpagelabels,
+	% pdftitle={\mytitle},
+	% pagebackref,
+	% pdfauthor={\myauthor},
+	% pdfkeywords={\keywords}
+	]{hyperref}
+
+\setlrmarginsandblock{.75in}{*}{*}
+\setulmarginsandblock{1in}{*}{*}
+\setheadfoot{0pt}{\baselineskip}
+\setheaderspaces{*}{0pt}{*}
+
+%%% Define the (default) chapter style
+%%% Since this is article, chapter is the root header level
+\makechapterstyle{homework}{%
+  \setlength{\beforechapskip}{0pt}
+  \setlength{\afterchapskip}{0pt}
+  % This doesn't seem to work to resize the font.
+  \renewcommand*{\chaptitlefont}{}
+  \renewcommand*{\printchaptertitle}[1]{%
+    \chaptitlefont 
+    $author.name$ (\texttt{$author.id$})\\
+    ##1 \\
+    $class.name$ - $class.instructor$\\
+    $due-date$
+    \smallskip\hrule\vskip\onelineskip  
+  }
+}
+\chapterstyle{homework}
+
+% "##" is read as subsection, which kind of makes sense.
+
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{%
+  \oldsubsection{Problem #1}
+}
+
+
+\setsubsecheadstyle{\large\scshape}
+\setsubsubsecheadstyle{\normalsize}
+
+% \makesectionstyle{problem}{%
+
+% }
+% \sectionstyle{problem}
+
+\checkandfixthelayout
+
+\copypagestyle{chapter}{plain}
+  \makeoddhead{chapter}{}{}{}
+  \makeoddfoot{chapter}{}{}{%
+    $author.name$ - $title$ - p. \thepage
+  }
+
+\pagestyle{chapter}
+
+\newcounter{problemCounter}
+\setcounter{problemCounter}{1}
+
+\newenvironment{problem}[1][-1]{
+  \ifnum#1>0
+    \setcounter{problemCounter}{#1}
+  \fi
+  \section*{Problem \arabic{problemCounter}}
+  \setcounter{problemCounter}{1}
+}
+
+\begin{document}
+\thispagestyle{empty} % no page numbers on page 1.
+\chapter*{$title$}
+
+$body$
+
+\end{document}
