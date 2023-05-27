@@ -19,9 +19,9 @@
   unicode=true,
 	plainpages=false,
 	pdfpagelabels,
-	% pdftitle={\mytitle},
+  pdftitle={$title$ for $course.name$ ($course.instructor$), due ${due-date}},
 	% pagebackref,
-	% pdfauthor={\myauthor},
+	pdfauthor={$author.name$},
 	% pdfkeywords={\keywords}
 	]{hyperref}
 
@@ -35,13 +35,12 @@
 \makechapterstyle{homework}{%
   \setlength{\beforechapskip}{0pt}
   \setlength{\afterchapskip}{0pt}
-  % This doesn't seem to work to resize the font.
   \renewcommand*{\chaptitlefont}{}
   \renewcommand*{\printchaptertitle}[1]{%
     \chaptitlefont 
     $author.name$ (\texttt{$author.id$})\\
     ##1 \\
-    $class.name$ - $class.instructor$\\
+    $course.name$ - $course.instructor$\\
     $due-date$
     \smallskip\hrule\vskip\onelineskip  
   }
@@ -49,7 +48,6 @@
 \chapterstyle{homework}
 
 % "##" is read as subsection, which kind of makes sense.
-
 \let\oldsubsection\subsection
 \renewcommand{\subsection}[1]{%
   \oldsubsection{Problem #1}
@@ -58,11 +56,6 @@
 
 \setsubsecheadstyle{\large\scshape}
 \setsubsubsecheadstyle{\normalsize}
-
-% \makesectionstyle{problem}{%
-
-% }
-% \sectionstyle{problem}
 
 \checkandfixthelayout
 
@@ -73,26 +66,6 @@
   }
 
 \pagestyle{chapter}
-
-\newcounter{problemCounter}
-\setcounter{problemCounter}{1}
-
-\newenvironment{problem}[1][-1]{
-  \ifnum#1>0
-    \setcounter{problemCounter}{#1}
-  \fi
-  \section*{Problem \arabic{problemCounter}}
-  \setcounter{problemCounter}{1}
-}
-
-$if(csl-refs)$
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newenvironment{cslreferences}%
-  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
-  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
-  {\par}
-$endif$
 
 \begin{document}
 \thispagestyle{empty} % no page numbers on page 1.
