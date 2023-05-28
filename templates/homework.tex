@@ -4,7 +4,7 @@
 % from https://github.com/kjhealy/pandoc-templates/blob/master/templates/xelatex.template
 \documentclass[letter,12pt,article,oneside]{memoir}
 
-\usepackage{amsmath}
+\usepackage{amsmath,systeme}
 \usepackage{mathspec}
 \setmainfont{EB Garamond}[
     % Ligatures=Historic ,
@@ -51,12 +51,16 @@
 % "##" is read as subsection, which kind of makes sense.
 \let\oldsubsection\subsection
 \renewcommand{\subsection}[1]{%
-  \oldsubsection{Problem #1}
+  \oldsubsection{Problem #1:}
 }
 
+\let\oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}[1]{%
+  \oldsubsubsection{#1:}
+}
 
 \setsubsecheadstyle{\large\scshape}
-\setsubsubsecheadstyle{\normalsize}
+\setsubsubsecheadstyle{\normalsize\scshape}
 
 \checkandfixthelayout
 
@@ -67,6 +71,8 @@
   }
 
 \pagestyle{chapter}
+
+% Shorthands
 
 \begin{document}
 \thispagestyle{empty} % no page numbers on page 1.
