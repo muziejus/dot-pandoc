@@ -5,15 +5,17 @@
 \documentclass[letter,12pt,article,oneside]{memoir}
 
 \usepackage{amsmath,systeme}
+\usepackage{amssymb}
+\usepackage{pgfplots}
 \usepackage{mathspec}
-\setmainfont{EB Garamond}[
+\setmainfont{Noto Serif}[
     % Ligatures=Historic ,
     % Ligatures=Rare ,
     Mapping=tex-text ,
     % ItalicFeatures={Style=Swash}
   ]
-\setmathrm{EB Garamond}
-\setmathfont(Digits,Latin){EB Garamond}
+\setmathrm{Noto Serif}
+\setmathfont(Digits,Latin){Noto Serif}
 \usepackage[
   breaklinks=true,
   hidelinks,
@@ -73,6 +75,7 @@
 \pagestyle{chapter}
 
 % Shorthands
+\newcommand\Real{\mathbb{R}}
 
 \begin{document}
 \thispagestyle{empty} % no page numbers on page 1.
