@@ -1,0 +1,25 @@
+\newcommand{\colvec}[1]{
+  \begin{bmatrix}
+    #1
+  \end{bmatrix}
+}
+\newcommand{\rowvec}[1]{
+  \begin{bmatrix}
+    #1
+  \end{bmatrix}
+}
+
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\let\oldvec\vec
+\renewcommand{\vec}[1]{%
+  \ensuremath{\oldvec{#1}}
+}
+
+
+% For augmented matrices
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother

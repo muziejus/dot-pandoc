@@ -4,11 +4,12 @@
 % from https://github.com/kjhealy/pandoc-templates/blob/master/templates/xelatex.template
 \documentclass[letter,12pt,article,oneside]{memoir}
 
-\usepackage{amsmath,systeme}
-\usepackage{amssymb}
-\usepackage{mathtools}
-\usepackage{pgfplots}
-\usepackage{pythonhighlight}
+$if(packages)$
+  $for(packages)$
+  \usepackage{$it$}
+  $endfor$
+$endif$
+
 \usepackage{mathspec}
 \setmainfont{Noto Serif}[
     % Ligatures=Historic ,
@@ -74,23 +75,14 @@
     $author.name$ - $title$ - p. \thepage
   }
 
+$if(inputs)$
+$for(inputs)$
+\input{inputs/$it$}
+$endfor$
+$endif$
+
 \pagestyle{chapter}
 
-% Shorthands
-\newcommand\R{\ensuremath{\mathbb{R}}}
-\let\oldvec\vec
-\renewcommand{\vec}[1]{%
-  \ensuremath{\oldvec{#1}}
-}
-
-
-% For augmented matrices
-\makeatletter
-\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip -\arraycolsep
-  \let\@ifnextchar\new@ifnextchar
-  \array{#1}}
-\makeatother
 
 \begin{document}
 \thispagestyle{empty} % no page numbers on page 1.
