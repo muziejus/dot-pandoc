@@ -6,7 +6,9 @@
 
 \usepackage{amsmath,systeme}
 \usepackage{amssymb}
+\usepackage{mathtools}
 \usepackage{pgfplots}
+\usepackage{pythonhighlight}
 \usepackage{mathspec}
 \setmainfont{Noto Serif}[
     % Ligatures=Historic ,
@@ -58,7 +60,7 @@
 
 \let\oldsubsubsection\subsubsection
 \renewcommand{\subsubsection}[1]{%
-  \oldsubsubsection{#1:}
+  \oldsubsubsection{\(\blacklozenge\quad\) #1:}
 }
 
 \setsubsecheadstyle{\large\scshape}
@@ -75,7 +77,20 @@
 \pagestyle{chapter}
 
 % Shorthands
-\newcommand\Real{\mathbb{R}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\let\oldvec\vec
+\renewcommand{\vec}[1]{%
+  \ensuremath{\oldvec{#1}}
+}
+
+
+% For augmented matrices
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
 
 \begin{document}
 \thispagestyle{empty} % no page numbers on page 1.
