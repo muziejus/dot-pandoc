@@ -1,7 +1,6 @@
-% A template for doing problem sets in Markdown/LaTeX
+% A template for taking lecture notes in Markdown/LaTeX
 %
-% By Moacir P. de Sá Pereira (moacir.com), with guidance from
-% from https://github.com/kjhealy/pandoc-templates/blob/master/templates/xelatex.template
+% By Moacir P. de Sá Pereira (moacir.com)
 \documentclass[letter,12pt,article,oneside]{memoir}
 
 $if(packages)$
@@ -33,7 +32,7 @@ $endif$
   unicode=true,
 	plainpages=false,
 	pdfpagelabels,
-  pdftitle={$title$ for $course.name$ ($course.instructor$), due ${due-date}},
+  pdftitle={$title$ Notes for $course.name$ ($course.instructor$), ${date}},
 	% pagebackref,
 	pdfauthor={$author.name$},
 	% pdfkeywords={\keywords}
@@ -42,37 +41,22 @@ $endif$
 \setlrmarginsandblock{.75in}{*}{*}
 \setulmarginsandblock{1in}{*}{*}
 \setheadfoot{0pt}{\baselineskip}
-\setheaderspaces{*}{0pt}{*}
 
 %%% Define the (default) chapter style
 %%% Since this is article, chapter is the root header level
-\makechapterstyle{homework}{%
+\makechapterstyle{math-lecture-notes}{%
   \setlength{\beforechapskip}{0pt}
   \setlength{\afterchapskip}{0pt}
-  \renewcommand*{\chaptitlefont}{}
+  \renewcommand*{\chaptitlefont}{\Large}
   \renewcommand*{\printchaptertitle}[1]{%
     \chaptitlefont 
-    $author.name$ (\texttt{$author.id$})\\
     ##1 \\
-    $course.name$ - $course.instructor$\\
-    $due-date$
     \smallskip\hrule\vskip\onelineskip  
   }
 }
-\chapterstyle{homework}
+\chapterstyle{math-lecture-notes}
 
-% "##" is read as subsection, which kind of makes sense.
-\let\oldsubsection\subsection
-\renewcommand{\subsection}[1]{%
-  \oldsubsection{Problem #1:}
-}
-
-\let\oldsubsubsection\subsubsection
-\renewcommand{\subsubsection}[1]{%
-  \oldsubsubsection{\(\blacklozenge\quad\) #1:}
-}
-
-\setsubsecheadstyle{\large\scshape}
+\setsubsecheadstyle{\large}
 \setsubsubsecheadstyle{\normalsize\scshape}
 
 \checkandfixthelayout
@@ -80,7 +64,7 @@ $endif$
 \copypagestyle{chapter}{plain}
   \makeoddhead{chapter}{}{}{}
   \makeoddfoot{chapter}{}{}{%
-    $author.name$ - $title$ - p. \thepage
+    $title$ notes for $course.name$ ($date$) by $author.name$ - p. \thepage
   }
 
 $if(inputs)$
@@ -95,5 +79,6 @@ $endif$
 \chapter*{$title$}
 
 $body$
+
 
 \end{document}
