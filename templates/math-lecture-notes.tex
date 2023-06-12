@@ -50,21 +50,18 @@ $endif$
   \renewcommand*{\chaptitlefont}{\Large}
   \renewcommand*{\printchaptertitle}[1]{%
     \chaptitlefont 
-    ##1 \\
+    ##1 ($date$)\\
     \smallskip\hrule\vskip\onelineskip  
   }
 }
 \chapterstyle{math-lecture-notes}
-
-\setsubsecheadstyle{\large}
-\setsubsubsecheadstyle{\normalsize\scshape}
 
 \checkandfixthelayout
 
 \copypagestyle{chapter}{plain}
   \makeoddhead{chapter}{}{}{}
   \makeoddfoot{chapter}{}{}{%
-    $title$ notes for $course.name$ ($date$) by $author.name$ - p. \thepage
+    $title$ ($date$) notes for $course.name$  by $author.name$ - p. \thepage
   }
 
 $if(inputs)$
@@ -73,9 +70,9 @@ $endif$
 
 \pagestyle{chapter}
 
+\setcounter{chapter}{1}
 
 \begin{document}
-\thispagestyle{empty} % no page numbers on page 1.
 \chapter*{$title$}
 
 $body$
