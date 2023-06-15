@@ -5,10 +5,6 @@ $if(biblatex)$
 $endif$
 % from https://github.com/kjhealy/pandoc-templates/blob/master/templates/xelatex.template
 
-\usepackage{layouts}[2001/04/29]
-% Use 8.5 x 11 inch page layout
-\input{moacir-memoir-layout-8.5x11}
-
 \usepackage{fontspec}
 \setmainfont{EB Garamond}[
     Ligatures=Historic ,
@@ -25,6 +21,11 @@ $endif$
 	% pdfauthor={\myauthor},
 	% pdfkeywords={\keywords}
 	]{hyperref}
+
+\setlrmarginsandblock{.75in}{*}{*}
+\setulmarginsandblock{1in}{*}{*}
+\setheadfoot{0pt}{\baselineskip}
+\setheaderspaces{*}{0pt}{*}
 
 $if(tables)$
 \usepackage{longtable}
@@ -84,6 +85,14 @@ $if(header)$
 \rfoot{\datestyle\datestyle\ $header$ \today, \thepage}
 \renewcommand{\headrulewidth}{0.0pt}
 $endif$
+
+% Define CSL References
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{CSLReferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 
 \begin{document}  
 
