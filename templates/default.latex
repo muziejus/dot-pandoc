@@ -1,20 +1,29 @@
+% This template exists only to process Pandoc metadata variables 
+% and convert them into \my... LaTeX variables that then get passed
+% into LaTeX templates in my local texmf tree.
+% 
+% See the texmf tree here: https://github.com/muziejus/local-texmf
+%
+% If the "inputsTemplate" metadata variable is not set,
+% then the entry point to the LaTeX processing is 
+% (local-texmf)/tex/latex/default-document.tex
 \documentclass[letter,12pt,article,oneside]{memoir}
 
 $if(title)$
   \newcommand{\mytitle}{$title$}
+$else$
+  \newcommand{\mytitle}{TITLE}
 $endif$
 
 $if(author.name)$
   \newcommand{\myauthorname}{$author.name$}
 $endif$
 
-$if(inputs-template)$
-  \newcommand{\myinputstemplate}{$inputs-template$}
+$if(inputsTemplate)$
+  \input{$inputsTemplate$}
 $else$
-  \newcommand{\myinputstemplate}{document}
+  \input{default-document}
 $endif$
-
-\input{\myinputstemplate}
 
 \begin{document}
 
