@@ -1,0 +1,23 @@
+\documentclass[letter,12pt,article,oneside]{memoir}
+
+$if(title)$
+  \newcommand{\mytitle}{$title$}
+$endif$
+
+$if(author.name)$
+  \newcommand{\myauthorname}{$author.name$}
+$endif$
+
+$if(inputs-template)$
+  \newcommand{\myinputstemplate}{$inputs-template$}
+$else$
+  \newcommand{\myinputstemplate}{document}
+$endif$
+
+\input{\myinputstemplate}
+
+\begin{document}
+
+$body$
+
+\end{document}
