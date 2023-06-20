@@ -25,6 +25,8 @@ $else$
   \input{default-document}
 $endif$
 
+\input{pandoc-specific}
+
 \begin{document}
 
 $body$
